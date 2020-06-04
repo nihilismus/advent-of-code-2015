@@ -1,0 +1,11 @@
+TOPTARGETS := run test
+
+PROJECTS := $(dir */project.clj)
+
+$(TOPTARGETS): $(PROJECTS)
+$(PROJECTS):
+	$(MAKE) -C $@ $(MAKECMDGOALS)
+
+.PHONY: $(TOPTARGETS) $(PROJECTS)
+
+.DEFAULT_GOAL := run

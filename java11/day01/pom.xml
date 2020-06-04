@@ -1,0 +1,333 @@
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- PROJECT -->
+  <groupId>day01</groupId>
+  <artifactId>day01</artifactId>
+  <version>0.1.0</version>
+  <name>day01</name>
+  <description>day01</description>
+  <url>https://adventofcode.com/2015/day/1</url>
+  <licenses>
+    <license>
+      <name>EPL-2.0</name>
+      <url>https://www.eclipse.org/legal/epl-2.0/</url>
+    </license>
+    <license>
+      <name>GPL-2.0-or-later WITH Classpath-exception-2.0</name>
+    </license>
+  </licenses>
+  <packaging>jar</packaging>
+
+  <!-- PROPERTIES -->
+  <properties>
+    <project.java.compiler.release>11</project.java.compiler.release>
+
+    <project.junit.version>5.7.0-M1</project.junit.version>
+
+    <project.maven-enforcer.version>3.0.0-M3</project.maven-enforcer.version>
+    <project.maven-require.version>3.0</project.maven-require.version>
+    <project.maven-compiler.version>3.8.1</project.maven-compiler.version>
+    <project.maven-help.version>3.2.0</project.maven-help.version>
+    <project.maven-surefire.version>3.0.0-M4</project.maven-surefire.version>
+    <project.maven-failsafe.version>3.0.0-M4</project.maven-failsafe.version>
+    <project.maven-spotbugs.version>4.0.0</project.maven-spotbugs.version>
+    <project.maven-jacoco.version>0.8.5</project.maven-jacoco.version>
+    <project.maven-spotless.version>1.31.1</project.maven-spotless.version>
+    <project.maven-exec.version>1.6.0</project.maven-exec.version>
+
+    <project.slf4j-api.version>2.0.0-alpha1</project.slf4j-api.version>
+    <project.slf4j-log4j12.version>2.0.0-alpha1</project.slf4j-log4j12.version>
+    <project.log4j-bom.version>2.13.3</project.log4j-bom.version>
+
+    <project.java.compliance.level>${project.java.compiler.release}</project.java.compliance.level>
+    <project.source.code.encoding>UTF8</project.source.code.encoding>
+
+    <maven.compiler.release>${project.java.compiler.release}</maven.compiler.release>
+    <maven.compiler.source>${project.java.compliance.level}</maven.compiler.source>
+    <maven.compiler.target>${project.java.compliance.level}</maven.compiler.target>
+    <project.build.sourceEncoding>${project.source.code.encoding}</project.build.sourceEncoding>
+  </properties>
+
+  <!-- DEPENDENCIES -->
+  <dependencies>
+
+    <!-- junit-jupiter-api -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+        <version>${project.junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- junit-jupiter-engine -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+        <version>${project.junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- junit-jupiter-params -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>${project.junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- log4j-api -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+    </dependency>
+
+    <!-- log4j-core -->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+    </dependency>
+
+    <!-- slf4j-api -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${project.slf4j-api.version}</version>
+    </dependency>
+
+    <!-- slf4j-log4j12 -->
+    <dependency> 
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>${project.slf4j-log4j12.version}</version>
+    </dependency>
+
+  </dependencies>
+
+  <!-- DEPENDENCY MANAGEMENT -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-bom</artifactId>
+        <version>${project.log4j-bom.version}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <!-- BUILD -->
+  <build>
+
+    <!-- RESOURCES -->
+    <resources>
+
+      <resource>
+        <directory>src/test/resources</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+
+    </resources>
+
+    <!-- PLUGINS -->
+    <plugins>
+
+      <!-- maven-compiler-plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${project.maven-compiler.version}</version>
+        <configuration>
+          <release>${project.java.compliance.level}</release>
+          <source>${project.java.compliance.level}</source>
+          <target>${project.java.compliance.level}</target>
+          <encoding>${project.source.code.encoding}</encoding>
+        </configuration>
+      </plugin>
+
+      <!-- maven-surefire-plugin -->
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${project.maven-surefire.version}</version>
+      </plugin>
+
+      <!-- maven-failsafe-plugin -->
+      <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>${project.maven-failsafe.version}</version>
+      </plugin>
+
+      <!-- maven-enforcer-plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>${project.maven-enforcer.version}</version>
+        <executions>
+          <execution>
+            <id>enforce-maven</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                <version>${project.maven-require.version}</version>
+                </requireMavenVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- maven-help-plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-help-plugin</artifactId>
+        <version>${project.maven-help.version}</version>
+      </plugin>
+
+      <!-- maven-shade-plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.3</version>
+        <configuration>
+          <transformers>
+            <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+            <mainClass>day01.Main</mainClass>
+            </transformer>
+         </transformers>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- spotbugs-maven-plugin -->
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>${project.maven-spotbugs.version}</version>
+        <configuration>
+          <effort>Max</effort>
+          <threshold>Low</threshold>
+          <xmlOutput>true</xmlOutput>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- jacoco-maven-plugin -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${project.maven-jacoco.version}</version>
+        <executions>
+          <execution>
+            <id>jacoco-prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>jacoco-report</id>
+              <goals>
+                <goal>report</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>jacoco-check</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <rule>
+                  <element>PACKAGE</element>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.0</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- spotless-maven-plugin -->
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <version>${project.maven-spotless.version}</version>
+        <configuration>
+          <encoding>UTF-8</encoding>
+          <java>
+            <googleJavaFormat>
+              <version>1.8</version>
+              <style>GOOGLE</style>
+            </googleJavaFormat>
+            <encoding>UTF-8</encoding>
+            <!--
+            <removeUnusedImports/>
+            -->
+            <!--
+            <lineEndings>GIT_ATTRIBUTES</lineEndings>
+            -->
+            <!--
+            <includes>
+              <include>src/**/java/**/*.java</include>
+              <include>other/java/**/*.java</include>
+            </includes>
+            -->
+            <!--
+            <excludes>
+              <exclude>src/test/java/**/*Example.java</exclude>
+            </excludes>
+            -->
+          </java>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!--  exec-maven-plugin -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>${project.maven-exec.version}</version>
+        <inherited>true</inherited>
+        <configuration>
+          <mainClass>day01.Main</mainClass>
+       </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,11 @@
+TOPTARGETS := run test
+
+PROJECTS := $(dir */pom.xml)
+
+$(TOPTARGETS): $(PROJECTS)
+$(PROJECTS):
+	$(MAKE) -C $@ $(MAKECMDGOALS)
+
+.PHONY: $(TOPTARGETS) $(PROJECTS)
+
+.DEFAULT_GOAL := run
